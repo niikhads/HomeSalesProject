@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.StructurHome.repository.mapper.HomeMyBatisRepository">
+
+    <select id="findAll" resultType="Home" >
+        SELECT h.number,
+        h.area,
+        h.repaircondition,
+        h.floor,
+        h.type,
+        h.place,
+        h.roominformation
+        FROM home_sales.home h
+    </select>
+
+    <select id="findByNumber" resultType="Home">
+        SELECT <include refid="homeBaseColumns"></include>
+        FROM home_sales.home h
+        <where>
+            h.number = #{number}
+        </where>
+    </select>
+
+    <insert id ="insert">
+        INSERT
+        INTO home_sales.home (
+        area,      <!-- istesek home.area yaza da bilerik eyni seydi -->
+        repaircondition,
+        floor,
+        type,
+        place,
+        roominformation)
+        VALUES (#{area, jdbcType=NVARCHAR},
+        #{repaircondition, jdbcType=NVARCHAR},
+        #{floor},
+        #{type},
+        #{place},
+        #{roominformation})
+    </insert>
+
+    <update id="update">
+        UPDATE home_sales.home h
+        SET h.area = #{area, jdbcType=NVARCHAR},
+        h.repaircondition = #{repaircondition, jdbcType=NVARCHAR},
+        h.floor = #{floor},
+        h.type = #{type},
+        place = #{place},
+        h.roominformation = #{roominformation}
+        <where>
+            h.number = #{number}
+        </where>
+    </update>
+
+    <update id="updateFloor">
+        UPDATE home_sales.home h
+        SET h.floor = #{floor}
+        <where>
+            h.id = #{id}
+        </where>
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM home_sales.home h
+        <where>
+            h.number = #{number}
+        </where>
+    </delete>
+
+    <sql id="homeBaseColumns">
+        h.number,
+        h.area,
+        h.repaircondition,
+        h.floor,
+        h.type,
+        h.place,
+        h.roominformation
+    </sql>
+
+</mapper>
