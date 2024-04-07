@@ -12,8 +12,6 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HomeRequest {
-
-
     private String area;
     private String repaircondition;
     private Integer floor;
