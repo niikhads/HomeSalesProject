@@ -63,7 +63,7 @@ public class HomeController {
         homeService.updateHomeFloor(number, floor);
         return ResponseEntity.ok().build();
     }
-
+//test
     @DeleteMapping("/number/{number}")
     public ResponseEntity<Void> deleteHomeByNumber(@PathVariable Long number){
         homeService.deleteHome(number);
